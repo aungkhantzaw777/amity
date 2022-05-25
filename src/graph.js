@@ -103,23 +103,23 @@ class Graph {
     
 }
 
-// let g = new Graph()
-// var vertices = [ 'A', 'B', 'C', 'D', 'E', 'F' ];
+let g = new Graph()
+var vertices = [ 'A', 'B', 'C', 'D', 'E', 'F' ];
 
-// for (var i = 0; i < vertices.length; i++) {
-//     g.addVertex(vertices[i]);
-// }
+for (var i = 0; i < vertices.length; i++) {
+    g.addVertex(vertices[i]);
+}
 
-// g.addEdge('A', 'B', 1);
-// g.addEdge('A', 'C', 4);
-// g.addEdge('A', 'D', 10);
-// g.addEdge('B', 'E', 3);
-// g.addEdge('C', 'D', 4);
-// g.addEdge('C', 'F', 2);
-// g.addEdge('D', 'E', 1);
-// g.addEdge('E', 'B', 3);
-// g.addEdge('E', 'A', 2);
-// g.addEdge('F', 'D', 1);
+g.addEdge('A', 'B', 1);
+g.addEdge('A', 'C', 4);
+g.addEdge('A', 'D', 10);
+g.addEdge('B', 'E', 3);
+g.addEdge('C', 'D', 4);
+g.addEdge('C', 'F', 2);
+g.addEdge('D', 'E', 1);
+g.addEdge('E', 'B', 3);
+g.addEdge('E', 'A', 2);
+g.addEdge('F', 'D', 1);
 
 // g.findCost(['E', 'A', 'C', 'F'])
 // g.findCost(['A', 'B', 'E'])
@@ -127,8 +127,8 @@ class Graph {
 // let result = g.findCost(['A', 'D', 'F'])
 // let result = g.findCost(['A', 'D'])
 // console.log(result)
-// g.printGraph()
+g.printGraph()
 
-export {
-    Graph
-}
+// export {
+//     Graph
+// }
