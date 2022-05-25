@@ -65,17 +65,53 @@ class Graph {
     
   }
   findCost(Arr) {
+
     //check array
-    if(typeof Arr !== Array) {
+    if(!Array.isArray(Arr)) {
       return
     }
 
     if(Arr.length < 1) {
-      console.log('error')
       return
     }
     var get_keys = this.adjacencyList;
-    console.log(get_keys)
+
+    let sources = null
+    
+    // let sources = get_keys[Arr[0]]
+    let total = 0
+    let error = ''
+    // calculate source and distination
+    Arr.forEach((val, i) => {
+      sources = get_keys[val]
+      // let dist = get_keys[Arr[i + 1]] || null
+      let distination = sources.find(v => v.node === Arr[i + 1])
+      // console.log(sources)
+      console.log(Arr[i + 1],distination)
+
+      
+      
+      if(distination !== undefined) {
+        total = total + distination.weight
+      }else {
+        error = 'No Such Route'
+      } 
+      console.log('-----')
+      
+    })
+
+    if(error !== '') {
+      return error
+    }else {
+      return total
+    }
+    // console.log(total)
+
+
+    // sources.forEach(val => {
+    //   console.log(val.node)
+    // })
+    // check route is valid
 
     // get_keys['A'].forEach(v => {
     //   console.log(v.weight)
@@ -102,7 +138,12 @@ g.addEdge('E', 'B', 3);
 g.addEdge('E', 'A', 2);
 g.addEdge('F', 'D', 1);
 
-g.findCost(['A', 'B'])
+// g.findCost(['E', 'A', 'C', 'F'])
+// g.findCost(['A', 'B', 'E'])
+// g.findCost(['A', 'D'])
+// let result = g.findCost(['A', 'D', 'F'])
+let result = g.findCost(['A', 'B'])
+console.log(result)
 // g.printGraph()
 
 // export {
