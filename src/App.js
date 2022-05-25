@@ -48,7 +48,7 @@ function App() {
       <ul>
         {
           getTowns.map((town,i) => {
-            return <li key={i}>{town.town} </li>
+            return <li key={i}>{town.town}  </li>
           })
         }
       </ul>
@@ -60,10 +60,10 @@ function App() {
       <button onClick={submit}>add Town</button>
       <button onClick={printGraph}>print</button>
       {
-        getTowns.length > 1 && (<Route />)
+        getTowns.length > 1 && (<Route towns={getTowns} />)
       }
       {/* <Route /> */}
-      {
+      {/* {
         getTowns.length > 1
         && (
           <div className='mt-2'>
@@ -71,8 +71,8 @@ function App() {
               <label>source</label>
               <select >
                 {
-                  getTowns.map(t => {
-                    return (<option>{ t.town }</option>)
+                  getTowns.map((t,i) => {
+                    return (<option key={i} >{ t.town }</option>)
                   })
                 }
               </select>
@@ -81,15 +81,15 @@ function App() {
               <label>destination</label>
               <select>
                 {
-                  getTowns.map(t => {
-                    return (<option>{ t.town }</option>)
+                  getTowns.map((t,i) => {
+                    return (<option key={i}>{ t.town }</option>)
                   })
                 }
               </select>
             </div>
           </div>
         )
-      }
+      } */}
       
     </div>
   );

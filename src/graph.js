@@ -1,10 +1,3 @@
-// this.adjacencyList = {
-//   A: [B, C],
-//   B: [A, D],
-//   C: [A, D, E],
-//   D: [B, C, E],
-//   E: [C, D],
-// };
 
 class Graph {
   constructor() {
@@ -77,75 +70,65 @@ class Graph {
     var get_keys = this.adjacencyList;
 
     let sources = null
+    let totalLength = []
     
     // let sources = get_keys[Arr[0]]
     let total = 0
-    let error = ''
+
     // calculate source and distination
     Arr.forEach((val, i) => {
       sources = get_keys[val]
-      // let dist = get_keys[Arr[i + 1]] || null
       let distination = sources.find(v => v.node === Arr[i + 1])
-      // console.log(sources)
-      console.log(Arr[i + 1],distination)
 
       
       
       if(distination !== undefined) {
         total = total + distination.weight
-      }else {
-        error = 'No Such Route'
+      }
+      else if(distination === undefined) {
+        totalLength.push('not next route')
+        return false
       } 
-      console.log('-----')
+      
       
     })
 
-    if(error !== '') {
-      return error
+    if(totalLength.length > 1) {
+      return 'No Such Route'
     }else {
       return total
     }
-    // console.log(total)
-
-
-    // sources.forEach(val => {
-    //   console.log(val.node)
-    // })
-    // check route is valid
-
-    // get_keys['A'].forEach(v => {
-    //   console.log(v.weight)
-    // })
+    
   }
     
 }
 
-let g = new Graph()
-var vertices = [ 'A', 'B', 'C', 'D', 'E', 'F' ];
+// let g = new Graph()
+// var vertices = [ 'A', 'B', 'C', 'D', 'E', 'F' ];
 
-for (var i = 0; i < vertices.length; i++) {
-    g.addVertex(vertices[i]);
-}
+// for (var i = 0; i < vertices.length; i++) {
+//     g.addVertex(vertices[i]);
+// }
 
-g.addEdge('A', 'B', 1);
-g.addEdge('A', 'C', 4);
-g.addEdge('A', 'D', 10);
-g.addEdge('B', 'E', 3);
-g.addEdge('C', 'D', 4);
-g.addEdge('C', 'F', 2);
-g.addEdge('D', 'E', 1);
-g.addEdge('E', 'B', 3);
-g.addEdge('E', 'A', 2);
-g.addEdge('F', 'D', 1);
+// g.addEdge('A', 'B', 1);
+// g.addEdge('A', 'C', 4);
+// g.addEdge('A', 'D', 10);
+// g.addEdge('B', 'E', 3);
+// g.addEdge('C', 'D', 4);
+// g.addEdge('C', 'F', 2);
+// g.addEdge('D', 'E', 1);
+// g.addEdge('E', 'B', 3);
+// g.addEdge('E', 'A', 2);
+// g.addEdge('F', 'D', 1);
 
 // g.findCost(['E', 'A', 'C', 'F'])
 // g.findCost(['A', 'B', 'E'])
 // g.findCost(['A', 'D'])
 // let result = g.findCost(['A', 'D', 'F'])
-let result = g.findCost(['A', 'B'])
-console.log(result)
+// let result = g.findCost(['A', 'D'])
+// console.log(result)
 // g.printGraph()
 
-// export {
-//     Graph
-// }
+export {
+    Graph
+}
