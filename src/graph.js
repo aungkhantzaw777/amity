@@ -71,13 +71,15 @@ class Graph {
     }
 
     if(Arr.length < 1) {
+      console.log('error')
       return
     }
     var get_keys = this.adjacencyList;
-    // console.log(get_keys['A'])
-    get_keys['A'].forEach(v => {
-      console.log(v.weight)
-    })
+    console.log(get_keys)
+
+    // get_keys['A'].forEach(v => {
+    //   console.log(v.weight)
+    // })
   }
     
 }
