@@ -4,6 +4,7 @@ import {Graph} from '../graph'
 function FindCost({routes, towns}) {
     const [getPath, setPath] = useState([])
     const [getTown, setTown] = useState(towns[0].town)
+    const [getResult , setResult] = useState()
     
     const addPath = () => {
         setPath(prev => {
@@ -13,6 +14,10 @@ function FindCost({routes, towns}) {
     const changeTown = (e) => {
         // alert(e.target.value)
         setTown(e.target.value)
+    }
+    const clearAll = () => {
+        setResult(null)
+        setPath([])
     }
     
     const calculateCost = () => {
@@ -25,9 +30,10 @@ function FindCost({routes, towns}) {
             graph.addEdge(r.source, r.distination, parseInt(r.cost))
         })
 
-        let total = graph.findCost(getPath)
+        let result = graph.findCost(getPath)
         // graph.printGraph()
-        console.log(total)
+        console.log(result)
+        setResult(result)
     }
 
     return (
@@ -49,6 +55,9 @@ function FindCost({routes, towns}) {
                     <button onClick={calculateCost}>Deliver Cost</button>
                 )
             }
+            <button onClick={clearAll}>clear</button>
+            <div>{getResult}</div>
+            
         </div>
     )
 }
