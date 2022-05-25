@@ -2,10 +2,9 @@ import { useState } from 'react'
 import {Graph} from '../graph'
 
 function FindCost({routes, towns}) {
-    // var graph = new Graph()
     const [getPath, setPath] = useState([])
     const [getTown, setTown] = useState(towns[0].town)
-
+    
     const addPath = () => {
         setPath(prev => {
             return [...prev, getTown]
@@ -15,13 +14,28 @@ function FindCost({routes, towns}) {
         // alert(e.target.value)
         setTown(e.target.value)
     }
+    
+    const calculateCost = () => {
+        var graph = new Graph()
+        
+        towns.forEach(town => {
+            graph.addVertex(town.town)
+        });
+        routes.forEach(r => {
+            graph.addEdge(r.source, r.distination, parseInt(r.cost))
+        })
+
+        let total = graph.findCost(getPath)
+        // graph.printGraph()
+        console.log(total)
+    }
 
     return (
         <div>
             <h1>Case 1</h1>
             <div>{getPath}</div>
-            <select value={getTown} onChange={changeTown}>
-                {/* <option>--choose--</option> */}
+            <select onChange={changeTown}>
+                <option>--choose--</option>
                 {
                     towns.map((t,i) => {
                         return ( <option value={t.town} key={i}>{t.town}</option>  )
@@ -32,7 +46,7 @@ function FindCost({routes, towns}) {
             {
                 getPath.length > 1 && 
                 (
-                    <button>Deliver Cost</button>
+                    <button onClick={calculateCost}>Deliver Cost</button>
                 )
             }
         </div>
