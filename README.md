@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# App 
+![alt text](https://github.com/aungkhantzaw777/amity/blob/main/compete.PNG)
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -31,4 +34,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 
 
-![alt text](https://github.com/aungkhantzaw777/amity/blob/main/compete.PNG)
+
