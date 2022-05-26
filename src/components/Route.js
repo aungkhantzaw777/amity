@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './Route.css'
 import FindCost from './FindCost'
+import FindRoutes from './FindRoutes'
 
 function Route({
     towns
@@ -75,6 +76,12 @@ function Route({
                      isFinish && 
                     (
                         <FindCost routes={getAvaliableRoutes} towns={towns} />
+                    )
+                }
+                {
+                    isFinish &&
+                    (
+                        <FindRoutes routes={getAvaliableRoutes} towns={towns} />
                     )
                 }
             </div>
