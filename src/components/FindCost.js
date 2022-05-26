@@ -59,7 +59,7 @@ function FindCost({routes, towns}) {
                     )
                 }
                 {' '}
-                <Button variant="danger" variant="danger" onClick={clearAll}>clear</Button>
+                <Button variant="danger" onClick={clearAll}>clear</Button>
             </div>
             <div>{getResult}</div>
             

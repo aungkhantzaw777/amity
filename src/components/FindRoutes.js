@@ -36,8 +36,13 @@ function FindRoutes({towns, routes}) {
         });
         console.log(graph)
 
-        let result = graph.findRoutes(getSource,getDistination)
-        console.log('result is', result)
+        let result 
+        if (isMax) {
+            result = graph.findRoutes(getSource,getDistination, {costLimit : getMax})
+        }else {
+            result = graph.findRoutes(getSource,getDistination)
+        }
+        
         if(parseInt(getMax) < result) {
             setResult(parseInt(getMax))
         }else{
