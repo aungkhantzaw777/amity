@@ -2,14 +2,15 @@ import { useState } from "react";
 import "./Route.css";
 import FindCost from "./FindCost";
 import FindRoutes from "./FindRoutes";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Card, Table } from "react-bootstrap";
+import db from "../db.json"
 
 function Route({ towns }) {
   const [getRoutes, setRoutes] = useState([]);
   const [getRoute, setRoute] = useState();
-  const [getAvaliableRoutes, setAvaliableRoutes] = useState([]);
-  const [getCost, setCost] = useState();
-  const [isFinish, setFinish] = useState(false);
+  const [getAvaliableRoutes, setAvaliableRoutes] = useState(db.avaliableRotues);
+  const [getCost, setCost] = useState(0);
+  const [isFinish, setFinish] = useState(true);
 
   const addRoute = () => {
     setRoutes((prev) => {
@@ -17,6 +18,11 @@ function Route({ towns }) {
     });
     // setRoute('')
   };
+
+  const handleCost = (e) => {
+
+    setCost(e.target.value)
+  }
   const addCost = () => {
     setAvaliableRoutes((prev) => {
       return [
@@ -26,23 +32,45 @@ function Route({ towns }) {
     });
     setRoutes([]);
   };
+  const RouteItem = ({ source, distination, cost }) => {
+    return (
+      <tbody>
+        <tr>
+          <td>{source}</td>
+          <td>{distination}</td>
+          <td>{cost}</td>
+        </tr>
+      </tbody>
+    )
+  }
 
-  return (
-    <div className="mt-2 wrap">
+
+  const BodyItem = () => {
+    return (
+
       <div>
         <div>
-          {getAvaliableRoutes.map((r, i) => {
-            return (
-              <div key={i}>
-                {`${r.source} -> ${r.distination} cost : ${r.cost}`}
-              </div>
-            );
-          })}
+          <Table>
+            <thead>
+              <tr>
+                <th>Source</th>
+                <th>Distination</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            {getAvaliableRoutes.map((r, i) => {
+              return (
+                <RouteItem source={r.source} distination={r.distination} cost={r.cost} />
+
+              );
+            })}
+          </Table>
           {getRoutes.length < 3 && getRoutes}
         </div>
         {getRoutes.length < 2 && (
           <div class="d-flex">
             <Form.Select
+              value={getRoute}
               onChange={(e) => setRoute(e.target.value)}
               aria-label="Default select example"
             >
@@ -56,39 +84,52 @@ function Route({ towns }) {
             </div>
           </div>
         )}
-
         {getRoutes.length > 1 && (
           <div>
-            {/* <input
-              type="text"
-              value={getCost}
-              onChange={(e) => setCost(e.target.value)}
-              placeholder="cost"
-            /> */}
+
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Cost</Form.Label>
               <Form.Control
                 type="text"
-                onChange={(e) => setCost(e.target.value)}
+                value={getCost}
+                onChange={handleCost}
               />
             </Form.Group>
             <Button onClick={addCost}>add cost</Button>
           </div>
         )}
-        {getAvaliableRoutes.length > 0 && (
-          <Button className="mt-3" onClick={() => setFinish(true)}>Finish</Button>
-        )}
       </div>
-      <div className="row">
-        <div className="col-6">
-          {isFinish && <FindCost routes={getAvaliableRoutes} towns={towns} />}
-        </div>
-        <div className="col-6">
-          {isFinish && <FindRoutes routes={getAvaliableRoutes} towns={towns} />}
-        </div>
+    )
+  }
+
+  return (
+    <>
+      <div className="col-6">
+        <Card>
+          <Card.Header>
+            <h1>Choose Route</h1>
+          </Card.Header>
+          <Card.Body>
+            <BodyItem />
+          </Card.Body>
+        <Card.Footer className="d-flex justify-content-end">
+
+          {getAvaliableRoutes.length > 0 && (
+            <Button className="mt-3" onClick={() => setFinish(true)}>Finish</Button>
+          )}
+        </Card.Footer>
+        </Card>
+
+
+
       </div>
-      
-    </div>
+      <div className="col-6">
+        {isFinish && <FindCost routes={getAvaliableRoutes} towns={towns} />}
+      </div>
+      <div className="col-6">
+        {isFinish && <FindRoutes routes={getAvaliableRoutes} towns={towns} />}
+      </div>
+    </>
   );
 }
 

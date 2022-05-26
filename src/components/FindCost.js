@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import {Graph} from '../graph'
-import {Form, Button} from 'react-bootstrap'
+import { Graph } from '../graph'
+import { Form, Button, Card } from 'react-bootstrap'
 
-function FindCost({routes, towns}) {
+function FindCost({ routes, towns }) {
     const [getPath, setPath] = useState([])
     const [getTown, setTown] = useState(towns[0].town)
-    const [getResult , setResult] = useState()
-    
+    const [getResult, setResult] = useState()
+
     const addPath = () => {
         setPath(prev => {
             return [...prev, getTown]
@@ -20,10 +20,10 @@ function FindCost({routes, towns}) {
         setResult(null)
         setPath([])
     }
-    
+
     const calculateCost = () => {
         var graph = new Graph()
-        
+
         towns.forEach(town => {
             graph.addVertex(town.town)
         });
@@ -38,32 +38,48 @@ function FindCost({routes, towns}) {
     }
 
     return (
-    <div className='mt-4'>
-            <h1>Case 1</h1>
-            <div>{getPath}</div>
-            
-            <Form.Select onChange={changeTown}>
-                <option>--choose--</option>
-                {
-                    towns.map((t,i) => {
-                        return ( <option value={t.town} key={i}>{t.town}</option>  )
-                    })
-                }
-            </Form.Select>
-            <div class="mt-2">
-                <Button onClick={addPath}>To</Button>
-                {
-                    getPath.length > 1 &&
-                    (
-                        <Button onClick={calculateCost}>Deliver Cost</Button>
-                    )
-                }
-                {' '}
-                <Button variant="danger" onClick={clearAll}>clear</Button>
-            </div>
-            <div>{getResult}</div>
-            
-        </div>
+        <Card className='mt-4'>
+            <Card.Header>
+                <h1>Case 1</h1>
+            </Card.Header>
+            <Card.Body>
+
+                <div>{getPath}</div>
+
+                <Form.Select onChange={changeTown}>
+                    <option>--choose--</option>
+                    {
+                        towns.map((t, i) => {
+                            return (<option value={t.town} key={i}>{t.town}</option>)
+                        })
+                    }
+                </Form.Select>
+                <Card.Footer className='mt-2'>
+
+                    <div >
+                        <h1 className='text-center '>
+                        {getResult || 'Plase Choose Route'}
+                        </h1>
+                    </div>
+                </Card.Footer>
+            </Card.Body>
+            <Card.Footer>
+                <div class="mt-2 d-flex justify-content-between">
+                    <Button className="mr-4" onClick={addPath}>To</Button>
+                    {' '}
+                    {
+                        getPath.length > 1 &&
+                        (
+                            <Button onClick={calculateCost}>Deliver Cost</Button>
+                        )
+                    }
+                    {' '}
+                    <Button variant="danger" onClick={clearAll}>clear</Button>
+                </div>
+
+            </Card.Footer>
+
+        </Card>
     )
 }
 

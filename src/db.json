@@ -1,0 +1,74 @@
+{
+    "Towns": [
+        {
+            "town": "A"
+        },
+        {
+            "town": "B"
+        },
+        {
+            "town": "C"
+        },
+        {
+            "town": "D"
+        },
+        {
+            "town": "E"
+        },
+        {
+            "town": "F"
+        }
+    ],
+    "avaliableRotues": [
+        {
+            "cost": "1",
+            "distination": "B",
+            "source": "A"
+        },
+        {
+            "cost": "3",
+            "distination": "E",
+            "source": "B"
+        },
+        {
+            "cost": "4",
+            "distination": "C",
+            "source": "A"
+        },
+        {
+            "cost": "10",
+            "distination": "D",
+            "source": "A"
+        },
+        {
+            "cost": "4",
+            "distination": "D",
+            "source": "C"
+        },
+        {
+            "cost": "2",
+            "distination": "F",
+            "source": "C"
+        },
+        {
+            "cost": "1",
+            "distination": "E",
+            "source": "D"
+        },
+        {
+            "cost": "3",
+            "distination": "B",
+            "source": "E"
+        },
+        {
+            "cost": "2",
+            "distination": "A",
+            "source": "E"
+        },
+        {
+            "cost": "1",
+            "distination":"F",
+            "source":"D"
+        }
+    ]
+}
