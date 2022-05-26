@@ -34,4 +34,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 
-
+![alt text](https://github.com/aungkhantzaw777/amity/blob/main/compete.PNG)
