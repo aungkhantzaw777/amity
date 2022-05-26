@@ -1,7 +1,9 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { Graph } from "./graph";
 import Route from "./components/Route";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Badge, Button, FormControl, InputGroup } from "react-bootstrap";
 
 function App() {
   const [getTowns, setTowns] = useState([]);
@@ -19,35 +21,46 @@ function App() {
       setTowns((prev) => {
         return [...prev, { town }];
       });
+      setTown('')
     } else {
       alert("Town already exist");
     }
   };
-  const printGraph = () => {
-    getTowns.forEach((town) => {
-      graph.addVertex(town.town);
-    });
-    graph.printGraph();
-  };
+  
 
-  // const routeCost = () => {
-  //   return (
-  //     <div>
-  //       <h3>hey man </h3>
-  //     </div>
-  //   )
-  // }
+  function ListItem({ town }) {
+    return <div className="px-4 py-1 border mb-2 rounded">{town}</div>;
+  }
 
   return (
     <div className="App">
       <h1>Add Towns</h1>
-      <ul>
-        {getTowns.map((town, i) => {
-          return <li key={i}>{town.town} </li>;
-        })}
-      </ul>
-      <div>
-        <label>town</label>
+      <div className="d-flex justify-content-center">
+        {getTowns.map((town, i) => (
+          <ListItem key={i} town={town.town} />
+        ))}
+      </div>
+      <div className="d-flex justify-content-center" >
+      <div className="w-50 d-flex justify-content-center">
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="Town"
+            aria-label="Town"
+            aria-describedby="basic-addon2"
+            value={getTown}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                submit();
+              }
+            }}
+            onChange={(e) => setTown(e.target.value)}
+          />
+          <Button onClick={submit} variant="outline-secondary" id="button-addon2">
+            Add
+          </Button>
+        </InputGroup>
+      </div>
+        {/* <label>town</label>
         <input
           type="text"
           onKeyDown={(e) => {
@@ -56,39 +69,12 @@ function App() {
             }
           }}
           onChange={(e) => setTown(e.target.value)}
-        />
+        /> */}
       </div>
 
-      <button onClick={submit}>add Town</button>
+      {/* <Button onClick={submit}>add Town</Button> */}
       {getTowns.length > 1 && <Route towns={getTowns} />}
       {/* <Route /> */}
-      {/* {
-        getTowns.length > 1
-        && (
-          <div className='mt-2'>
-            <div>
-              <label>source</label>
-              <select >
-                {
-                  getTowns.map((t,i) => {
-                    return (<option key={i} >{ t.town }</option>)
-                  })
-                }
-              </select>
-            </div>
-            <div>
-              <label>destination</label>
-              <select>
-                {
-                  getTowns.map((t,i) => {
-                    return (<option key={i}>{ t.town }</option>)
-                  })
-                }
-              </select>
-            </div>
-          </div>
-        )
-      } */}
     </div>
   );
 }

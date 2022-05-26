@@ -1,5 +1,8 @@
 import { useState } from "react"
+import {Form, Button} from "react-bootstrap"
+
 const Graph = require('graph-route-finder');
+
 
 
 function FindRoutes({towns, routes}) {
@@ -43,12 +46,12 @@ function FindRoutes({towns, routes}) {
 
     }
     return (
-        <div>
+        <div className="mt-4">
             <h1>Case 2</h1>
             <div>
                 {getSource} {getDistination} result: {getResult}
             </div>
-            <select onChange={e => setSource(e.target.value)}>
+            <Form.Select onChange={e => setSource(e.target.value)}>
                 <option>---choose---</option> 
                 {
                     towns.map((t,i) => {
@@ -57,9 +60,9 @@ function FindRoutes({towns, routes}) {
                         )
                     })
                 }
-            </select>
+            </Form.Select>
             To
-            <select onChange={e => setDistination(e.target.value)}>
+            <Form.Select onChange={e => setDistination(e.target.value)}>
                 <option>---choose---</option> 
                 {
                     towns.map((t,i) => {
@@ -68,21 +71,22 @@ function FindRoutes({towns, routes}) {
                         )
                     })
                 }
-            </select>
-            <div>
-                <button onClick={add}>Find Route</button>
+            </Form.Select>
+            <div className="mt-4">
+                <Button onClick={add}>Find Route</Button>
             </div>
-            <div>
-                <button onClick={() => setisMax(true)}>max </button>
+            <div className="mt-2">
+                <Button onClick={() => setisMax(true)}>max </Button>
+                {' '}
                 {
                     isMax &&
                     (
-                        <input type="number" onChange={e => setMax(e.target.value)} min={0} />
+                        <Form.Control type="number" onChange={e => setMax(e.target.value)} min={0} />
 
                     )
                     
                 }
-                <button onClick={() => setisMax(false)}>clear max</button>
+                <Button variant="danger" onClick={() => setisMax(false)}>clear max</Button>
                 
             </div>
         </div>
