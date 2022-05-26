@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# App 
+# App UI interface
 ![alt text](https://github.com/aungkhantzaw777/amity/blob/main/compete.PNG)
 
 ## Available Scripts
