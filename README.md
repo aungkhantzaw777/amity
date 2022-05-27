@@ -34,7 +34,7 @@ Choose Start place and End place
 
 ![alt_text](https://raw.githubusercontent.com/aungkhantzaw777/amity/main/assets/case2.1.png)
 
-After that, Click "max" button check maximum
+After that, Click "Maximum Routes" button check maximum
 
 ![alt_text](https://raw.githubusercontent.com/aungkhantzaw777/amity/main/assets/case2.2.png)
 
