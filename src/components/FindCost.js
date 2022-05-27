@@ -40,7 +40,7 @@ function FindCost({ routes, towns }) {
     return (
         <Card className='mt-4'>
             <Card.Header>
-                <h1>Case 1</h1>
+                <h1>Case 1: Find Deliver Cost</h1>
             </Card.Header>
             <Card.Body>
 

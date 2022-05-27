@@ -53,7 +53,7 @@ function FindRoutes({ towns, routes }) {
         <Card className="mt-4">
             <Card.Header>
 
-                <h1>Case 2</h1>
+                <h1>Case 2 : find delivery routes</h1>
             </Card.Header>
             <Card.Body>
 
