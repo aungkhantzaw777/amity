@@ -32,13 +32,27 @@ function Route({ towns }) {
     });
     setRoutes([]);
   };
-  const RouteItem = ({ source, distination, cost }) => {
+
+  const removeAvaliable = (index) => {
+    
+    let result = getAvaliableRoutes.filter((val, i) => i !== index)
+    setAvaliableRoutes(result)
+
+  }
+
+  const RouteItem = ({ source, distination, cost, index }) => {
     return (
       <tbody>
         <tr>
           <td>{source}</td>
           <td>{distination}</td>
           <td>{cost}</td>
+          <td>
+            <span onClick={() => removeAvaliable(index)} style={{cursor:'pointer', color: 'red'}} >
+
+              &times;
+            </span>
+            </td>
         </tr>
       </tbody>
     )
@@ -60,7 +74,7 @@ function Route({ towns }) {
             </thead>
             {getAvaliableRoutes.map((r, i) => {
               return (
-                <RouteItem source={r.source} distination={r.distination} cost={r.cost} />
+                <RouteItem source={r.source} distination={r.distination} cost={r.cost} index={i} />
 
               );
             })}
