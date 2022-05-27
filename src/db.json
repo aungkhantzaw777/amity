@@ -67,8 +67,8 @@
         },
         {
             "cost": "1",
-            "distination":"F",
-            "source":"D"
+            "distination":"D",
+            "source":"F"
         }
     ]
 }
