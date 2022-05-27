@@ -3,7 +3,7 @@ import "./Route.css";
 import FindCost from "./FindCost";
 import FindRoutes from "./FindRoutes";
 import { Form, Button, Card, Table } from "react-bootstrap";
-import db from "../db.json"
+import db from "../db.json";
 
 function Route({ towns }) {
   const [getRoutes, setRoutes] = useState([]);
@@ -11,6 +11,8 @@ function Route({ towns }) {
   const [getAvaliableRoutes, setAvaliableRoutes] = useState(db.avaliableRotues);
   const [getCost, setCost] = useState(0);
   const [isFinish, setFinish] = useState(true);
+  const [getSource, setSource] = useState()
+  const [getDistination, setDistination] = useState()
 
   const addRoute = () => {
     setRoutes((prev) => {
@@ -20,9 +22,8 @@ function Route({ towns }) {
   };
 
   const handleCost = (e) => {
-
-    setCost(e.target.value)
-  }
+    setCost(e.target.value);
+  };
   const addCost = () => {
     setAvaliableRoutes((prev) => {
       return [
@@ -34,10 +35,14 @@ function Route({ towns }) {
   };
 
   const removeAvaliable = (index) => {
-    
-    let result = getAvaliableRoutes.filter((val, i) => i !== index)
-    setAvaliableRoutes(result)
+    let result = getAvaliableRoutes.filter((val, i) => i !== index);
+    setAvaliableRoutes(result);
+  };
 
+  const addAvaliableRoutes = () => {
+    setAvaliableRoutes(prev => {
+      return [...prev, {source:getSource, distination: getDistination, cost : getCost}]
+    })
   }
 
   const RouteItem = ({ source, distination, cost, index }) => {
@@ -48,20 +53,20 @@ function Route({ towns }) {
           <td>{distination}</td>
           <td>{cost}</td>
           <td>
-            <span onClick={() => removeAvaliable(index)} style={{cursor:'pointer', color: 'red'}} >
-
+            <span
+              onClick={() => removeAvaliable(index)}
+              style={{ cursor: "pointer", color: "red" }}
+            >
               &times;
             </span>
-            </td>
+          </td>
         </tr>
       </tbody>
-    )
-  }
-
+    );
+  };
 
   const BodyItem = () => {
     return (
-
       <div>
         <div>
           <Table>
@@ -74,15 +79,55 @@ function Route({ towns }) {
             </thead>
             {getAvaliableRoutes.map((r, i) => {
               return (
-                <RouteItem source={r.source} distination={r.distination} cost={r.cost} index={i} />
-
+                <RouteItem
+                  source={r.source}
+                  distination={r.distination}
+                  cost={r.cost}
+                  index={i}
+                />
               );
             })}
           </Table>
           {getRoutes.length < 3 && getRoutes}
         </div>
-        {getRoutes.length < 2 && (
-          <div class="d-flex">
+        <div className="row">
+          <div className="col-4">
+            <label>From</label>
+            <Form.Select
+              value={getSource}
+              onChange={(e) => setSource(e.target.value)}
+              aria-label="Default select example"
+            >
+              <option>--- choose ---</option>
+              {towns.map((t, i) => {
+                return <option key={i}>{t.town}</option>;
+              })}
+            </Form.Select>
+          </div>
+          <div className="col-4">
+            <label>To</label>
+            <Form.Select
+              value={getDistination}
+              onChange={(e) => setDistination(e.target.value)}
+              aria-label="Default select example"
+            >
+              <option>--- choose ---</option>
+              {towns.map((t, i) => {
+                return <option key={i}>{t.town}</option>;
+              })}
+            </Form.Select>
+          </div>
+          <div className="col-4 d-flex align-items-end">
+            <Form.Control
+              value={getCost}
+              onChange={handleCost}
+              placeholder="Cost..."
+            ></Form.Control>
+            <Button onClick={addAvaliableRoutes} variant="primary">Add</Button>
+          </div>
+        </div>
+        {/* {getRoutes.length < 2 && (
+          <div className="d-flex">
             <Form.Select
               value={getRoute}
               onChange={(e) => setRoute(e.target.value)}
@@ -97,24 +142,19 @@ function Route({ towns }) {
               <Button onClick={addRoute}>To</Button>
             </div>
           </div>
-        )}
-        {getRoutes.length > 1 && (
+        )} */}
+        {/* {getRoutes.length > 1 && (
           <div>
-
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Cost</Form.Label>
-              <Form.Control
-                type="text"
-                value={getCost}
-                onChange={handleCost}
-              />
+              <Form.Control type="text" value={getCost} onChange={handleCost} />
             </Form.Group>
             <Button onClick={addCost}>add cost</Button>
           </div>
-        )}
+        )} */}
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <>
@@ -126,16 +166,14 @@ function Route({ towns }) {
           <Card.Body>
             <BodyItem />
           </Card.Body>
-        <Card.Footer className="d-flex justify-content-end">
-
-          {getAvaliableRoutes.length > 0 && (
-            <Button className="mt-3" onClick={() => setFinish(true)}>Finish</Button>
-          )}
-        </Card.Footer>
+          <Card.Footer className="d-flex justify-content-end">
+            {getAvaliableRoutes.length > 0 && (
+              <Button className="mt-3" onClick={() => setFinish(true)}>
+                Finish
+              </Button>
+            )}
+          </Card.Footer>
         </Card>
-
-
-
       </div>
       <div className="col-6">
         {isFinish && <FindCost routes={getAvaliableRoutes} towns={towns} />}

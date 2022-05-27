@@ -32,7 +32,7 @@ function FindRoutes({ towns, routes }) {
         routes.forEach(r => {
             graph.set(r.source, r.distination, parseInt(r.cost))
         });
-        console.log(graph)
+        // console.log(graph)
 
         let result
         if (isMax) {
@@ -40,6 +40,7 @@ function FindRoutes({ towns, routes }) {
         } else {
             result = graph.findRoutes(getSource, getDistination)
         }
+        console.log(result)
 
         if (parseInt(getMax) < result) {
             setResult(parseInt(getMax))
