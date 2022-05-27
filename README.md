@@ -28,6 +28,23 @@ When you choose second town "Delivery Cost" Button is apper, and press it.
 
 ![alt_text](https://raw.githubusercontent.com/aungkhantzaw777/amity/main/assets/case3.png)
 
+## case 2 : Finding delivery routes
+
+Choose Start place and End place
+
+![alt_text](https://raw.githubusercontent.com/aungkhantzaw777/amity/main/assets/case2.1.png)
+
+After that, Click "max" button check maximum
+
+![alt_text](https://raw.githubusercontent.com/aungkhantzaw777/amity/main/assets/case2.2.png)
+
+And fill maximum route 
+
+![alt_text](https://raw.githubusercontent.com/aungkhantzaw777/amity/main/assets/case2.3.png)
+
+And Click "find route" button
+
+![alt_text](https://raw.githubusercontent.com/aungkhantzaw777/amity/main/assets/case2.4.png)
 
 
 ## Available Scripts
