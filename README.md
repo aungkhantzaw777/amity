@@ -1,9 +1,17 @@
-# Getting Started with Create React App
+# Getting Started 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Some dummy data fill by default
 
-# App UI interface
-![alt text](https://github.com/aungkhantzaw777/amity/blob/main/compete.PNG)
+# Add Towns
+![alt_text](https://raw.githubusercontent.com/aungkhantzaw777/amity/main/assets/1.png)
+
+For easy to use, I put dummy.(But you can skip this part)
+
+# Create Route
+I also put dummy data, but you can delete it.
+
+![alt_text](https://raw.githubusercontent.com/aungkhantzaw777/amity/main/assets/CreateRoute.png)
+
 
 ## Available Scripts
 
@@ -16,18 +24,7 @@ Install dependency
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 
 
