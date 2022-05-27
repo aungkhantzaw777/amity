@@ -9,6 +9,9 @@ function FindRoutes({ towns, routes }) {
   const [getResult, setResult] = useState();
   const [isMax, setisMax] = useState(false);
   const [getMax, setMax] = useState(0);
+  const [getMaxCost, setMaxCost] = useState()
+  const [isMaxDeli, setIsMaxDeli] = useState(false)
+  const [isSameRoute, setIsSameRoute] = useState(false)
 
   const add = () => {
     if (!getSource) {
@@ -33,26 +36,47 @@ function FindRoutes({ towns, routes }) {
     // console.log(graph)
 
     let result;
+    let properties = {};
+
 
     if (isMax) {
-      result = graph.findRoutes(getSource, getDistination, {
-        stopLimit: getMax,
-      });
-    } else {
-      result = graph.findRoutes(getSource, getDistination);
+    //   result = graph.findRoutes(getSource, getDistination, {
+    //     stopLimit: getMax,
+    //   });
+        properties = {...properties, routeLimit:getMax}
+    } 
+    if(isSameRoute) {
+        properties = {...properties, pathReuseLimit: '1'}
+        // result = graph.findRoutes(getSource, getDistination, {pathReuseLimit: '1'})
     }
-    console.log(result);
+    if(isMaxDeli){
+        properties = {...properties, costLimit: getMax }
+        // result = graph.findRoutes(getSource, getDistination, {pathReuseLimit: '1'})
+    }
 
-    if (parseInt(getMax) < result.length && isMax) {
-      setResult(parseInt(getMax));
-    } else {
-      setResult(result.length);
-    }
+    result = graph.findRoutes(getSource, getDistination, properties)
+            
+
+
+    // else {
+    //   result = graph.findRoutes(getSource, getDistination);
+    // }
+    console.log(result);
+    setResult(result.length)
+
+    // if (parseInt(getMax) < result.length && isMax) {
+    //   setResult(parseInt(getMax));
+    // }
+    // else {
+    //   setResult(result.length);
+    // }
   };
+
+  
   return (
     <Card className="mt-4">
       <Card.Header>
-        <h1>Case 2 : find delivery routes</h1>
+        <h1>Case 2 : Find delivery routes</h1>
       </Card.Header>
       <Card.Body>
         <Form.Select onChange={(e) => setSource(e.target.value)}>
@@ -81,11 +105,47 @@ function FindRoutes({ towns, routes }) {
             <label>Maximum Route</label>
             <Form.Control
               type="number"
+              value={getMax}
               onChange={(e) => setMax(e.target.value)}
               min={0}
             />
           </div>
         )}
+
+        <Form>
+            <Form.Check 
+            type="switch"
+            label="Maximum Delivery Cost"
+            checked={isMaxDeli}
+            onChange={() => setIsMaxDeli(!isMaxDeli)}
+            />
+        </Form>
+        {
+            isMaxDeli && 
+            (
+                <Form>
+                    <Form.Control
+                    type="number"
+                    placeholder="Maximum Delivery Cost"
+                    min={0}
+                    value={getMaxCost}
+                    onChange={(e) => setMaxCost(e.target.value)}
+                    />
+
+                    
+                </Form>
+            )
+        }
+        <Form>
+            <Form.Check 
+            type="switch"
+            checked={isSameRoute}
+            label="Use Same Route"
+            onChange={() => setIsSameRoute(!isSameRoute)}
+            />
+        </Form>
+        
+
         <Card.Footer className="mt-3">
           <div>
             <h1>
@@ -94,12 +154,8 @@ function FindRoutes({ towns, routes }) {
           </div>
         </Card.Footer>
       </Card.Body>
-      <Card.Footer className="d-flex justify-content-between">
+      <Card.Footer className="d-flex justify-content-end">
         <Button onClick={add}>Find Route</Button>
-
-        <Button variant="danger" onClick={() => setisMax(false)}>
-          clear max
-        </Button>
       </Card.Footer>
     </Card>
   );
