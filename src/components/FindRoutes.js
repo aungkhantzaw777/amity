@@ -42,7 +42,7 @@ function FindRoutes({ towns, routes }) {
         }
         console.log(result)
 
-        if (parseInt(getMax) < result) {
+        if (parseInt(getMax) < result.length) {
             setResult(parseInt(getMax))
         } else {
             setResult(result.length)
