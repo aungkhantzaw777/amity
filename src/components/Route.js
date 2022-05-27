@@ -121,7 +121,7 @@ function Route({ towns }) {
       <div className="col-6">
         <Card>
           <Card.Header>
-            <h1>Choose Route</h1>
+            <h1>Create Route</h1>
           </Card.Header>
           <Card.Body>
             <BodyItem />
